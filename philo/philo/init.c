@@ -1,11 +1,11 @@
 #include "philo.h"
 
-void init_philo(t_all *all, pthread_mutex_t *mutex_print)
+void init_philo(t_all *all, pthread_mutex_t mutex_print)
 {
 	int i;
 
 	i = 0;
-	while(i < all->num.num_philo)
+	while (i < all->num.num_philo)
 	{
 		all->philo[i].forks = &all->forks[i];
 		all->philo[i].next_fork = &all->forks[(i + 1) % all->num.num_philo];
@@ -20,7 +20,7 @@ void init_philo(t_all *all, pthread_mutex_t *mutex_print)
 void ft_init(t_all *all, char **av)
 {
 	int	i;
-	pthread_mutex_t *mutex_print;
+	pthread_mutex_t mutex_print;
 
 	i = 0;
 	all->num.num_philo = ft_atol(av[1]);
@@ -43,10 +43,10 @@ void ft_init(t_all *all, char **av)
 		return ;
 	while(i < all->num.num_philo)
 	{
-		if(pthread_mutex_init(&all->forks[i++], NULL) != 0)
+		if (pthread_mutex_init(&all->forks[i++], NULL) != 0)
 			return ;
 	}
-	if (pthread_mutex_init(mutex_print, NULL) != 0)
+	if (pthread_mutex_init(&mutex_print, NULL) != 0)
 		return ;
 	init_philo(all, mutex_print);
 }

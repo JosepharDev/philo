@@ -7,6 +7,15 @@
 #include <stdio.h>
 #include <sys/time.h>
 #include <pthread.h>
+#include <stdbool.h>
+
+
+#define FORK "has taken a fork"
+#define SLEEP "is sleeping"
+#define EAT "is eating"
+#define THINK "is thinking"
+#define DIE "died"
+
 
 typedef struct s_num
 {
@@ -17,16 +26,21 @@ typedef struct s_num
 	int ntpe;
 }t_num;
 
+
+
 typedef struct s_philo
 {
 	int 			index;
 	int 			num_of_eating;
+	long			last_eat;
 	t_num 			num;
 	pthread_t 		philo;
 	pthread_mutex_t *forks;
 	pthread_mutex_t *next_fork;
-	pthread_mutex_t *mutex_print;
+	pthread_mutex_t mutex_print;
 }t_philo;
+
+
 
 typedef struct s_all
 {
@@ -36,7 +50,12 @@ typedef struct s_all
 }t_all;
 
 
+
+int ft_check_die(t_all *all);
+void ft_time(int num);
 void ft_init(t_all *all, char **av);
-void init_philo(t_all *all, pthread_mutex_t *mutex_print);
+void init_philo(t_all *all, pthread_mutex_t mutex_print);
 long long ft_atol(char *str);
+void *func(void *p);
+long set_time(void);
 #endif
