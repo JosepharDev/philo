@@ -11,8 +11,11 @@ void init_philo(t_all *all, pthread_mutex_t mutex_print)
 		all->philo[i].next_fork = &all->forks[(i + 1) % all->num.num_philo];
 		all->philo[i].num = all->num;
 		all->philo[i].num_of_eating = 0;
+		all->philo[i].start_time = set_time();
+		all->philo[i].last_eat = set_time();
 		all->philo[i].index = i + 1;
 		all->philo[i].mutex_print = mutex_print;
+		all->philo[i].all = all;
 		i++;
 	}
 }
@@ -47,6 +50,8 @@ void ft_init(t_all *all, char **av)
 			return ;
 	}
 	if (pthread_mutex_init(&mutex_print, NULL) != 0)
+		return ;
+	if (pthread_mutex_init(&all->lock, NULL) != 0)
 		return ;
 	init_philo(all, mutex_print);
 }

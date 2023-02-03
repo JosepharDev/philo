@@ -12,9 +12,12 @@ int thread_create(t_all *all)
         printf("Error in pthread_create");
         return (-1);
       }
+      pthread_detach(all->philo[i].philo);
       i++;
   }
-  if (ft_check_die(all) == 11)
+		// pthread_mutex_unlock(&philo->all->lock);
+
+  if (ft_check_die(all) == 1)
     return (-1);
   return (0);
 }

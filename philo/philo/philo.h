@@ -33,11 +33,13 @@ typedef struct s_philo
 	int 			index;
 	int 			num_of_eating;
 	long			last_eat;
+	long			start_time;
 	t_num 			num;
 	pthread_t 		philo;
 	pthread_mutex_t *forks;
 	pthread_mutex_t *next_fork;
 	pthread_mutex_t mutex_print;
+	struct s_all *all;
 }t_philo;
 
 
@@ -47,6 +49,7 @@ typedef struct s_all
 	t_philo 		*philo;
 	t_num 			num;
 	pthread_mutex_t *forks;
+	pthread_mutex_t lock;
 }t_all;
 
 
