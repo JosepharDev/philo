@@ -16,10 +16,8 @@ long long ft_atol(char *str)
 	{
 		i++;
 	}
-	if (str[i] == '-' || str[i] == '+')
+	if (str[i] == '+')
 	{
-		if (str[i] == '-')
-			sign = - 1;
 		i++;
 	}
 	while(str[i] && str[i] >= '0' && str[i] <= '9')

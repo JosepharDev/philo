@@ -30,7 +30,8 @@ int main(int ac, char **av)
   i = 0;
   if (ac == 5 || ac == 6)
   {
-    ft_init(&all, av);
+    if (ft_init(&all, av) == -1)
+      return (-1);
     if (thread_create(&all) == -1)
       return (1);
   }

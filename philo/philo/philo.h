@@ -38,7 +38,7 @@ typedef struct s_philo
 	pthread_t 		philo;
 	pthread_mutex_t *forks;
 	pthread_mutex_t *next_fork;
-	pthread_mutex_t mutex_print;
+	pthread_mutex_t *mutex_print;
 	struct s_all *all;
 }t_philo;
 
@@ -56,8 +56,8 @@ typedef struct s_all
 
 int ft_check_die(t_all *all);
 void ft_time(int num);
-void ft_init(t_all *all, char **av);
-void init_philo(t_all *all, pthread_mutex_t mutex_print);
+int ft_init(t_all *all, char **av);
+void init_philo(t_all *all, pthread_mutex_t *mutex_print);
 long long ft_atol(char *str);
 void *func(void *p);
 long set_time(void);
