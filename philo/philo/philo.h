@@ -50,6 +50,7 @@ typedef struct s_all
 	t_num 			num;
 	pthread_mutex_t *forks;
 	pthread_mutex_t lock;
+	int 			died;
 }t_all;
 
 

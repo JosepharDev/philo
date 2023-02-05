@@ -33,17 +33,22 @@ int ft_init(t_all *all, char **av)
 	if (!av[5])
 		all->num.ntpe = -1;
 	else
+	{
 		all->num.ntpe = ft_atol(av[5]);
+		if(all->num.ntpe < 0)
+			return -1;
+	}
 	if (all->num.num_philo < 0 || all->num.time_to_die < 0 || 
 		all->num.time_to_eat < 0 || all->num.time_to_sleep < 0)
 	{
-		// printf("contain negative value\n");
+		printf("contain negative value\n");
 			return -1;
 	}
 	all->philo = malloc(sizeof(t_philo) * all->num.num_philo);
 	all->forks = malloc(sizeof(pthread_mutex_t) * all->num.num_philo);
 	if (!all->philo || !all->forks)
 		return -1;
+		all->died = 0;
 	while(i < all->num.num_philo)
 	{
 		if (pthread_mutex_init(&all->forks[i++], NULL) != 0)
