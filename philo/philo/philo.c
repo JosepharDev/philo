@@ -20,18 +20,30 @@ int thread_create(t_all *all)
   return (0);
 }
 
+void ft_free(t_all *all)
+{
+  int i = 0;
+  pthread_mutex_destroy(&all->lock);
+  pthread_mutex_destroy(all->philo->mutex_print);
+  while(i < all->num.num_philo)
+  {
+       pthread_mutex_destroy(&all->philo->forks[i++]);
+  }
+}
+
 int main(int ac, char **av)
 {
   t_all all;
-  int i;
 
-  i = 0;
   if (ac == 5 || ac == 6)
   {
     if (ft_init(&all, av) == -1)
       return (-1);
     if (thread_create(&all) == -1)
+    {
+      ft_free(&all);
       return (1);
+    }
   }
   else
     printf("Invalid Argemment\n");
