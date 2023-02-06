@@ -19,5 +19,5 @@ void ft_time(int num)
 	long time;
 	time = set_time();
 	while(set_time() - time < num)
-		usleep(50);
+		usleep(1000);
 }

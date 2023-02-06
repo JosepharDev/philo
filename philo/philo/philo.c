@@ -13,7 +13,6 @@ int thread_create(t_all *all)
         return (-1);
       }
       pthread_detach(all->philo[i].philo);
-      // usleep(100);
       i++;
   }
   if (ft_check_die(all) == 1)
@@ -33,7 +32,6 @@ int main(int ac, char **av)
       return (-1);
     if (thread_create(&all) == -1)
       return (1);
-      // system("leaks a.out");
   }
   else
     printf("Invalid Argemment\n");
