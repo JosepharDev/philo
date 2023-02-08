@@ -6,7 +6,7 @@
 /*   By: yoyahya <yoyahya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:07:12 by yoyahya           #+#    #+#             */
-/*   Updated: 2023/02/07 20:29:16 by yoyahya          ###   ########.fr       */
+/*   Updated: 2023/02/08 14:30:33 by yoyahya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,11 @@ void	ft_free(t_all *all)
 
 	i = 0;
 	pthread_mutex_destroy(&all->lock);
-	// pthread_mutex_unlock(all->mutex_print);
-	pthread_mutex_destroy(all->mutex_print);
 	while (i < all->num.num_philo)
 	{
 		pthread_mutex_destroy(&all->philo->forks[i++]);
 	}
-	pthread_mutex_destroy(all->philo->forks);
-	pthread_mutex_destroy(all->philo->next_fork);
 	free(all->forks);
-	free(all->philo);
-	free(all->mutex_print);
 }
 
 int	main(int ac, char **av)

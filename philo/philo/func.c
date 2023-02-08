@@ -6,7 +6,7 @@
 /*   By: yoyahya <yoyahya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:55:56 by yoyahya           #+#    #+#             */
-/*   Updated: 2023/02/07 15:17:57 by yoyahya          ###   ########.fr       */
+/*   Updated: 2023/02/08 18:17:05 by yoyahya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*func(void *p)
 
 	philo = (t_philo *)p;
 	if (philo->index % 2 == 0)
-		ft_time(10);
+		usleep(1000);
 	while (1)
 	{
 		philo_take_fork(philo);
@@ -43,14 +43,14 @@ int	check_die(long n, t_philo *philo, int i)
 {
 	if (philo[i].last_eat == -1)
 		return (1);
-	pthread_mutex_lock(philo[i].mutex_print);
+	pthread_mutex_lock(philo->mutex_print);
 	if (n >= philo[i].num.time_to_die)
 	{
 		printf("%ld philo number %d %s\n",
 			set_time() - philo[i].start_time, philo[i].index, "die");
 		return (0);
 	}
-	pthread_mutex_unlock(philo[i].mutex_print);
+	pthread_mutex_unlock(philo->mutex_print);
 	return (1);
 }
 
@@ -93,8 +93,15 @@ int	supervis(t_all *all)
 {
 	pthread_t	check;
 
-	if (pthread_create(&check, NULL, ft_check, all->philo) == -1)
+	if (pthread_create(&check, NULL, ft_check, all->philo) != 0)
+	{
+		printf("Error in pthread_create");
 		return (-1);
-	pthread_join(check, NULL);
+	}
+	if (pthread_join(check, NULL) != 0)
+	{
+		printf("Error in pthread_join");
+		return (-1);
+	}
 	return (0);
 }

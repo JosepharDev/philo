@@ -6,7 +6,7 @@
 /*   By: yoyahya <yoyahya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:02:21 by yoyahya           #+#    #+#             */
-/*   Updated: 2023/02/07 20:27:31 by yoyahya          ###   ########.fr       */
+/*   Updated: 2023/02/08 14:21:37 by yoyahya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	init_philo(t_all *all, pthread_mutex_t *mutex_print)
 int	ft_init(t_all *all, char **av)
 {
 	int				i;
+	pthread_mutex_t *mutex_print;
 
 	i = 0;
 	all->num.num_philo = ft_atol(av[1]);
@@ -60,8 +61,8 @@ int	ft_init(t_all *all, char **av)
 	}
 	all->philo = malloc(sizeof(t_philo) * all->num.num_philo);
 	all->forks = malloc(sizeof(pthread_mutex_t) * all->num.num_philo);
-	all->mutex_print = malloc(sizeof(pthread_mutex_t) * 1);
-	if (!all->philo || !all->forks || !all->mutex_print)
+	mutex_print = malloc(sizeof(pthread_mutex_t) * 1);
+	if (!all->philo || !all->forks || !mutex_print)
 	{
 		printf("allocation failure");
 		return (-1);
@@ -71,10 +72,10 @@ int	ft_init(t_all *all, char **av)
 		if (pthread_mutex_init(&all->forks[i++], NULL) != 0)
 			return (-1);
 	}
-	if (pthread_mutex_init(all->mutex_print, NULL) != 0)
+	if (pthread_mutex_init(mutex_print, NULL) != 0)
 		return (-1);
 	if (pthread_mutex_init(&all->lock, NULL) != 0)
 		return (-1);
-	init_philo(all, all->mutex_print);
+	init_philo(all, mutex_print);
 	return (0);
 }
