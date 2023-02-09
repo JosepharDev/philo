@@ -6,7 +6,7 @@
 /*   By: yoyahya <yoyahya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:15:41 by yoyahya           #+#    #+#             */
-/*   Updated: 2023/02/08 14:20:21 by yoyahya          ###   ########.fr       */
+/*   Updated: 2023/02/09 20:00:54 by yoyahya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ typedef struct s_philo
 	pthread_t		philo;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*next_fork;
-	pthread_mutex_t *mutex_print;
+	pthread_mutex_t	*mutex_print;
+	pthread_mutex_t	*lock;
 	struct s_all	*all;
 }t_philo;
 
@@ -55,13 +56,13 @@ typedef struct s_all
 	t_philo			*philo;
 	t_num			num;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	lock;
 }t_all;
 
 int			supervis(t_all *all);
 void		ft_time(int num);
 int			ft_init(t_all *all, char **av);
-void		init_philo(t_all *all, pthread_mutex_t *mutex_print);
+void		init_philo(t_all *all, pthread_mutex_t *mutex_print,
+				pthread_mutex_t *lock);
 long		ft_atol(char *str);
 void		*func(void *p);
 long		set_time(void);

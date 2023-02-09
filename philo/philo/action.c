@@ -6,7 +6,7 @@
 /*   By: yoyahya <yoyahya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:58:43 by yoyahya           #+#    #+#             */
-/*   Updated: 2023/02/08 14:21:03 by yoyahya          ###   ########.fr       */
+/*   Updated: 2023/02/09 20:00:39 by yoyahya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	ft_print(t_philo philo, char *str)
 void	philo_eat(t_philo *philo)
 {
 	ft_print(*philo, EAT);
-	pthread_mutex_lock(&philo->all->lock);
+	pthread_mutex_lock(philo->lock);
 	philo->last_eat = set_time();
 	if (philo->num.ntpe > 0)
 			philo->num_of_eating++;
-	pthread_mutex_unlock(&philo->all->lock);
+	pthread_mutex_unlock(philo->lock);
 	ft_time(philo->num.time_to_eat);
 }
 
