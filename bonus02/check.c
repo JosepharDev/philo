@@ -25,6 +25,7 @@ void	*ft_check(void *data)
 			+ (all->last_eat.tv_usec / 1000));
 		if (check_die(n, all) == 0)
 			exit(1);
+		usleep(1000);
 	}
 	return (NULL);
 }

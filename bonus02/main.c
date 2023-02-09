@@ -62,12 +62,15 @@ int	main(int ac, char **av)
 {
 	t_all all;
 	int	val;
-	(void)ac;
-
-	init_struct(&all, av);
-	create_philo(&all);
-	waitpid(-1, &val, 0);
-	if (val != 0)
-		ft_kill(&all);
+	if (ac == 5 || ac == 6)
+	{
+		init_struct(&all, av);
+		create_philo(&all);
+		waitpid(-1, &val, 0);
+		if (val != 0)
+			ft_kill(&all);
+	}
+	else
+		printf("invalid arg\n");
 	return (0);
 }
