@@ -6,7 +6,7 @@
 /*   By: yoyahya <yoyahya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:07:12 by yoyahya           #+#    #+#             */
-/*   Updated: 2023/02/09 20:01:41 by yoyahya          ###   ########.fr       */
+/*   Updated: 2023/02/10 11:15:47 by yoyahya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	ft_free(t_all *all)
 	int	i;
 
 	i = 0;
-	// pthread_mutex_destroy(all->philo->lock);
 	while (i < all->num.num_philo)
 	{
 		pthread_mutex_destroy(&all->philo->forks[i++]);
@@ -61,7 +60,6 @@ int	main(int ac, char **av)
 			return (1);
 		}
 		ft_free(&all);
-		// system("leaks a.out");
 	}
 	else
 		printf("Invalid Argemment\n");

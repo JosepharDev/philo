@@ -6,7 +6,7 @@
 /*   By: yoyahya <yoyahya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:14:44 by yoyahya           #+#    #+#             */
-/*   Updated: 2023/02/08 17:48:29 by yoyahya          ###   ########.fr       */
+/*   Updated: 2023/02/10 11:13:23 by yoyahya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	ft_time(int num)
 
 	time = set_time();
 	while (set_time() - time < num)
-	usleep(1000);
+		usleep(1000);
 }

@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yoyahya <yoyahya@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/10 11:09:19 by yoyahya           #+#    #+#             */
+/*   Updated: 2023/02/10 15:33:57 by yoyahya          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
-#define PHILO_H
+# define PHILO_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -19,11 +31,11 @@
 
 typedef struct s_philo
 {
-	int		num_of_philo;
+	long	num_of_philo;
 	long	time_to_die;
 	long	time_to_eat;
 	long	time_to_sleep;
-	int		ntpe;
+	long	ntpe;
 }t_philo;
 
 typedef struct s_all

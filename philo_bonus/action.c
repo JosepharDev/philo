@@ -6,7 +6,7 @@
 /*   By: yoyahya <yoyahya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:11:40 by yoyahya           #+#    #+#             */
-/*   Updated: 2023/02/09 21:11:51 by yoyahya          ###   ########.fr       */
+/*   Updated: 2023/02/11 12:29:29 by yoyahya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	print(t_all *all, char *str)
 {
 	sem_wait(all->sem_print);
-	printf("%ld philo number %d %s\n", set_time() - all->start_time, all->index, str);
+	printf("%ld philo number %d %s\n", set_time()
+		- all->start_time, all->index, str);
 	sem_post(all->sem_print);
 }
 
@@ -38,7 +39,7 @@ void	life_philo(t_all *all)
 {
 	if (all->index % 2 == 0)
 		usleep(1000);
-	while(true)
+	while (true)
 	{
 		fork_eat(all);
 		if (all->philo.ntpe == all->num_of_eating)

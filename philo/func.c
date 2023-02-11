@@ -6,7 +6,7 @@
 /*   By: yoyahya <yoyahya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:55:56 by yoyahya           #+#    #+#             */
-/*   Updated: 2023/02/09 20:00:02 by yoyahya          ###   ########.fr       */
+/*   Updated: 2023/02/10 17:17:59 by yoyahya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	*func(void *p)
 
 int	check_die(long n, t_philo *philo, int i, int *eating)
 {
+	n = set_time() - philo[i].last_eat;
 	pthread_mutex_lock(philo->mutex_print);
 	*eating = (*eating) + (philo[i].num.ntpe > 0
 			&& philo[i].num_of_eating >= philo[i].num.ntpe);
@@ -62,7 +63,6 @@ int	check_die(long n, t_philo *philo, int i, int *eating)
 void	*ft_check(void *data)
 {
 	t_philo	*philo;
-	long	n;
 	int		i;
 	int		eating;
 
@@ -74,12 +74,9 @@ void	*ft_check(void *data)
 		pthread_mutex_lock(philo->lock);
 		while (++i < philo->num.num_philo)
 		{
-			n = set_time() - philo[i].last_eat;
-			if (check_die(n, philo, i, &eating) == 0)
-			{
-				pthread_mutex_unlock(philo->lock);
+			if (check_die(0, philo, i, &eating) == 0 \
+				&& pthread_mutex_unlock(philo->lock) != -7)
 				return (0);
-			}
 		}
 		if (eating == philo->num.num_philo)
 		{
